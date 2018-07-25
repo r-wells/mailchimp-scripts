@@ -22,12 +22,12 @@ require_once(dirname(__FILE__) . '/lib/mailchimp.php');
 
 
     //Mailchimp logic
-    $chimp = new MailChimp( '2999537fb8e236291806ba888460abf0-us18' );
+    $chimp = new MailChimp( MAILCHIMP API KEY );
 
     foreach ($newrecord as $data) {
         //commented out line below and changed post method to PUT. PUT requires an md5 hash of the lower case email.
         //$result = $chimp->post("lists/" . CHIMP_LIST_ID . "/members", [
-        $result = $chimp->put("lists/" . 'b3aafee244' . "/members/" . md5(strtolower($data['Email'])), [
+        $result = $chimp->put("lists/" . CHIMP_LIST_ID . "/members/" . md5(strtolower($data['Email'])), [
             //added the strlower function below to force lowercase to email
             'email_address' => strtolower($data['Email']),
             'status' => 'subscribed',
